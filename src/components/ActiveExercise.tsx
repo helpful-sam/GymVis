@@ -31,9 +31,9 @@ export default function Active({ exer }: Exercise) {
         <div className="active">
             {exer.label ? <h1>{exer.label}</h1> : ""}
 
-            {exer.prep ? <><h2>Prep:</h2> <h3>{exer.prep}</h3></> : ""}
+            {exer.prep ? <><h2>Preperation:</h2> <h3>{exer.prep}</h3></> : ""}
 
-            {exer.exec ? <><h2>Exec:</h2><h3>{exer.exec}</h3></> : ""}
+            {exer.exec ? <><h2>Execution:</h2><h3>{exer.exec}</h3></> : ""}
 
             {exer.target[0] ? <><h2>Target:</h2><h3>{exer.target}</h3></> : ""}
 
