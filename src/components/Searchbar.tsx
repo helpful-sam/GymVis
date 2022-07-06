@@ -41,6 +41,7 @@ export default function Search( { exer, onUpdate }: Exercise ) {
     return (
     <>
         <Autocomplete
+        isOptionEqualToValue={(option, value) => option.label === value.label}
         className='searchBar'
         disablePortal
         options={exercises}
