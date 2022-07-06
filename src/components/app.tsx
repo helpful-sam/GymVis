@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Active from './ActiveExercise';
 import Model from './MuscleModel';
 import Search from './Searchbar';
 
@@ -196,6 +197,7 @@ export default function App() {
             <div className="leftDiv">
             <React.StrictMode>
                 <Search exer={activeExercise} onUpdate={updateActive} />
+                <Active exer={activeExercise} />
             </React.StrictMode>
             </div>
             <div className="rightDiv">
