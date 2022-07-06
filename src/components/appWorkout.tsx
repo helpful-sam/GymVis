@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Active from './ActiveExercise';
+import ExerciseCardsHolder from './ExerciseCardsHolder';
 import Model from './MuscleModel';
-import Search from './Searchbar';
+import ModelWorkout from './MuscleModelWorkout';
+import SearchWorkout from './SearchbarWorkout';
 
 // Exercise interface.
 interface ExerciseClean {
@@ -20,20 +21,8 @@ interface ExerciseClean {
 
 export default function AppSingle() {
     // Sets default state & state update function.
-    const [activeExercise, setActiveExercise] = useState(
-        {
-            label: "",
-            target: [""],
-            synergists: [""],
-            dynamicStabilizers: [""],
-            stabilizers: [""],
-            antagonistStabilizer: [""],
-            prep: "",
-            exec: "",
-            mechanics: "",
-            force: "",
-            url: "",
-        }
+    const [activeExercises, setActiveExercise] = useState(
+        [] as ExerciseClean[]
     )
 
     // Converts muscle name to the class it belongs to.
@@ -161,49 +150,51 @@ export default function AppSingle() {
     // Updates the div with the active exercise.
     function updateActive(event: any, value: ExerciseClean | null) {
         if (value == null) {
-            setActiveExercise({
-                label: "",
-                target: [""],
-                synergists: [""],
-                dynamicStabilizers: [""],
-                stabilizers: [""],
-                antagonistStabilizer: [""],
-                prep: "",
-                exec: "",
-                mechanics: "",
-                force: "",
-                url: "",
-            })
+            return
         } else {
-            setActiveExercise({
-                label: value["label"],
-                target: value["target"],
-                synergists: value["synergists"],
-                dynamicStabilizers: value["dynamicStabilizers"],
-                stabilizers: value["stabilizers"],
-                antagonistStabilizer: value["antagonistStabilizer"],
-                prep: value["prep"],
-                exec: value["exec"],
-                mechanics: value["mechanics"],
-                force: value["force"],
-                url: value["url"],
-            })
+            const inState = activeExercises.some(elem =>{
+                return JSON.stringify(value) === JSON.stringify(elem)});
+            if (!inState) {
+                const newEx = {
+                    label: value["label"],
+                    target: value["target"],
+                    synergists: value["synergists"],
+                    dynamicStabilizers: value["dynamicStabilizers"],
+                    stabilizers: value["stabilizers"],
+                    antagonistStabilizer: value["antagonistStabilizer"],
+                    prep: value["prep"],
+                    exec: value["exec"],
+                    mechanics: value["mechanics"],
+                    force: value["force"],
+                    url: value["url"],
+                }
+                setActiveExercise([...activeExercises, newEx])
+            }
         }
-        colorMuscles(null)
-        colorMuscles(value)
+        // colorMuscles(null)
+        // colorMuscles(value)
+    }
+
+    function onRemove(label: string) {
+        if (label == "") {
+            return
+        } else {
+            setActiveExercise(activeExercises.filter((ex) => ex.label !== label))
+        }
+        // Colors updaten
     }
 
     return(
         <>
             <div className="leftDiv">
             <React.StrictMode>
-                <Search exer={activeExercise} onUpdate={updateActive} />
-
+                <SearchWorkout exer={activeExercises} onUpdate={updateActive} />
+                <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove}/>
             </React.StrictMode>
             </div>
             <div className="rightDiv">
             <React.StrictMode>
-                <Model exer={activeExercise}/>
+                <ModelWorkout />
             </React.StrictMode>
             </div>
         </>

@@ -1,3 +1,6 @@
+0) Todo
+        0) Done
+--------------------------------------------------------------------------------
         1) Duplicate keys in exercises.txt deleten
         2) muscle target enzo scheiden met ; oid.
         3) Class state naar function state hook maken.
@@ -5,12 +8,12 @@
         5) muscle tooltip groter maken.
         6) exercise info in aparte module zetten.
         7) git
-8) cards maken voor de mult exercise, uitklapbaar
+        8) cards maken voor de mult exercise, uitklapbaar
 9) kies menu voor targets, syns, etc te highlighten.
 10) styling
 11) footer
-12)
-13)
+        12) 2x zelfde exercise in workout check
+        13) in card enkel en meervoud fixen
 14)
 15)
 16)

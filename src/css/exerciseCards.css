@@ -1,0 +1,28 @@
+.exerciseCardContainer {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.title {
+    width: 40%;
+    float: left;
+    text-decoration: wavy;
+}
+
+.tekst {
+    width: 60%;
+    float: right;
+}
+
+.textContainer {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+/* .closeIcon {
+    float: right;
+    font-size: 1rem;
+    margin-top: auto;
+    margin-bottom: auto;
+} */

@@ -5,6 +5,7 @@ import './css/index.css';
 import './css/searchbar.css';
 import './css/model.css';
 import './css/activeExercise.css';
+import './css/exerciseCards.css';
 import './css/menubar.css';
 import Menubar from './components/Menubar';
 import {
