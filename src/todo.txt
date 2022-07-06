@@ -1,6 +1,7 @@
         1) Duplicate keys in exercises.txt deleten
 2) muscle target enzo scheiden met ; oid.
-3) Class state naar function state hook maken.
-4) muscles bij hover ook "target" oid meegeven.
+        3) Class state naar function state hook maken.
+        4) muscles bij hover ook "target" oid meegeven.
 5) muscle tooltip groter maken.
-6) exercise info in aparte module zetten.
+        6) exercise info in aparte module zetten.
+        7) git
