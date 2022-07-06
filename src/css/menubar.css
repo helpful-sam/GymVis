@@ -1,0 +1,25 @@
+.menubar {
+    height: 60px;
+    width: 100%;
+    background-color: rgb(236, 136, 136);
+    padding-top: 5px;
+    text-align: center;
+}
+
+li {
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: bolder;
+
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+a, a:link, a:visited,  a:hover, a:active
+{
+    color: #000000;
+    text-decoration: none;
+}

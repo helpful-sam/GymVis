@@ -3,7 +3,7 @@ import Active from './ActiveExercise';
 import Model from './MuscleModel';
 import Search from './Searchbar';
 
-
+// Exercise interface.
 interface ExerciseClean {
     label: string;
     target: string[];
@@ -18,8 +18,8 @@ interface ExerciseClean {
     url: string;
 }
 
-export default function App() {
-    // Sets default state.
+export default function AppSingle() {
+    // Sets default state & state update function.
     const [activeExercise, setActiveExercise] = useState(
         {
             label: "",
@@ -134,6 +134,7 @@ export default function App() {
         });
     }
 
+    // Colors the appropiate muscles by adding a "target", etc. class to the element.
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
             let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
@@ -197,7 +198,7 @@ export default function App() {
             <div className="leftDiv">
             <React.StrictMode>
                 <Search exer={activeExercise} onUpdate={updateActive} />
-                <Active exer={activeExercise} />
+
             </React.StrictMode>
             </div>
             <div className="rightDiv">
