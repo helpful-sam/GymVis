@@ -106,7 +106,8 @@ export default function Model({ exer }: Exercise) {
                 return
             }
         });
-        const tooltip = muscle + focus
+        const tooltipText = muscle + focus
+        const tooltip = <h3> {tooltipText} </h3>
 
         return tooltip
     }
