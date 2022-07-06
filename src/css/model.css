@@ -1,0 +1,35 @@
+.muscle{
+    position: relative;
+    opacity: 0.1;
+    fill: black;
+}
+
+.muscle:hover{
+    opacity: 0.4;
+    fill: white;
+}
+
+.target {
+    opacity: 0.3;
+    fill: brown;
+}
+
+.synergists {
+    opacity: 0.2;
+    fill: blue;
+}
+
+.dynamicStabilizers {
+    opacity: 0.2;
+    fill: aquamarine;
+}
+
+.stabilizers {
+    opacity: 0.2;
+    fill: blue;
+}
+
+.antagonistStabilizer {
+    opacity: 0.2;
+    fill: turquoise;
+}
