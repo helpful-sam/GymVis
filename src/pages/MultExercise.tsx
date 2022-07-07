@@ -1,6 +1,6 @@
 import AppWorkout from "../components/appWorkout";
 
-export default function() {
+export default function MultExercise() {
     return (
         <AppWorkout />
     )

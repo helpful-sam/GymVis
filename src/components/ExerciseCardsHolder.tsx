@@ -26,7 +26,7 @@ interface ExerciseArr {
     mechanics: string;
     force: string;
     url: string;}[],
-    onRemove:(label: string) => void
+    onRemove:(exer: ExerciseClean) => void
 }
 
 export default function ExerciseCardsHolder({ actives, onRemove }: ExerciseArr) {

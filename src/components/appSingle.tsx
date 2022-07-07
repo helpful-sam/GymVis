@@ -138,7 +138,6 @@ export default function AppSingle() {
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
             let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
-            console.log(el)
             for (var i = 0; i < el.length; i++) {
                 el[i].classList.add(focus);
             }

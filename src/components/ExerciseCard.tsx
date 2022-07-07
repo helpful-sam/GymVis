@@ -34,7 +34,7 @@ interface ExerciseArr {
   mechanics: string;
   force: string;
   url: string;},
-  onRemove:(label: string) => void
+  onRemove:(exer: ExerciseClean) => void
 }
 
 
@@ -65,7 +65,7 @@ export default function ExerciseCard({ exer, onRemove }:ExerciseArr) {
             <Typography>{exer.label}</Typography>
           </AccordionSummary>
           <Box>
-            <IconButton onClick={() => onRemove(exer.label)}>
+            <IconButton onClick={() => onRemove(exer)}>
               <CloseIcon/>
             </IconButton>
           </Box>

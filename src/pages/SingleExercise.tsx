@@ -1,6 +1,6 @@
 import AppSingle from "../components/appSingle";
 
-export default function() {
+export default function SingleExercise() {
     return (
         <AppSingle />
     )

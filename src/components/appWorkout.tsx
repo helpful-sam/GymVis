@@ -112,7 +112,7 @@ export default function AppSingle() {
     }
 
     // Removes all muscle coloring.
-    function removeColorClasses() {
+    function removeAllColorClasses() {
         const muscles: Element[] = Array.from(document.getElementsByClassName("muscle"));
         muscles.forEach((m: Element) => {
             m.classList.remove("target")
@@ -123,11 +123,12 @@ export default function AppSingle() {
         });
     }
 
+
+
     // Colors the appropiate muscles by adding a "target", etc. class to the element.
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
             let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
-            console.log(el)
             for (var i = 0; i < el.length; i++) {
                 el[i].classList.add(focus);
             }
@@ -137,7 +138,7 @@ export default function AppSingle() {
     // Colors the muscles according to muscle functions in exercise.
     function colorMuscles(exercise: ExerciseClean | null) {
         if (exercise == null) {
-            removeColorClasses()
+            removeAllColorClasses()
             return
         }
         color(exercise, "target")
@@ -171,17 +172,38 @@ export default function AppSingle() {
                 setActiveExercise([...activeExercises, newEx])
             }
         }
-        // colorMuscles(null)
-        // colorMuscles(value)
+        colorMuscles(value)
+
     }
 
-    function onRemove(label: string) {
-        if (label == "") {
+    function removeMuscleColorClasses(muscle: string, focus: string) {
+        const muscles: Element[] = Array.from(document.getElementsByClassName(muscle_to_class(muscle)));
+        muscles.forEach((m: Element) => {
+            m.classList.remove(focus)
+        });
+    }
+
+    // Removes all muscle coloring.
+    function removeExerColorClasses(exer: ExerciseClean) {
+        exer.target.forEach((m) => removeMuscleColorClasses(m, "target"));
+        exer.synergists.forEach((m) => removeMuscleColorClasses(m, "synergists"));
+        exer.stabilizers.forEach((m) => removeMuscleColorClasses(m, "stabilizers"));
+        exer.dynamicStabilizers.forEach((m) => removeMuscleColorClasses(m, "dynamicStabilizers"));
+        exer.antagonistStabilizer.forEach((m) => removeMuscleColorClasses(m, "antagonistStabilizer"));
+    }
+
+    function recolorState(exerciseArray: ExerciseClean[]) {
+        exerciseArray.forEach((exer) => colorMuscles(exer))
+    }
+
+    function onRemove(exer: ExerciseClean) {
+        if (exer.label === "") {
             return
         } else {
-            setActiveExercise(activeExercises.filter((ex) => ex.label !== label))
+            setActiveExercise(activeExercises.filter((ex) => ex.label !== exer.label))
         }
-        // Colors updaten
+        colorMuscles(null)
+        recolorState(activeExercises.filter((ex) => ex.label !== exer.label))
     }
 
     return(
