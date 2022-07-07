@@ -4,10 +4,10 @@ export default function Menubar() {
     return (
         <div className="menubar">
             <ul>
-                <li>
+                <li className="menuOption">
                     <Link to="/exercise">Exercise Info</Link> {' '}
                 </li>
-                <li>
+                <li className="menuOption">
                     <Link to="/workout">Workout Creator</Link> {' '}
                 </li>
             </ul>

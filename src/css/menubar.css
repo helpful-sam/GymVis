@@ -1,12 +1,13 @@
 .menubar {
     height: 60px;
     width: 100%;
-    background-color: rgb(236, 136, 136);
+    background-color: rgb(255, 255, 255);
     padding-top: 5px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-li {
+.menuOption {
     display: inline;
     margin-left: 20px;
     margin-right: 20px;
@@ -14,8 +15,9 @@ li {
 
 }
 
-li:hover {
+.menuOption:hover {
     cursor: pointer;
+    text-decoration: underline;
 }
 
 a, a:link, a:visited,  a:hover, a:active

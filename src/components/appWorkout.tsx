@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ExerciseCardsHolder from './ExerciseCardsHolder';
 import FocusSelector from './FocusSelector';
-import Model from './MuscleModel';
 import ModelWorkout from './MuscleModelWorkout';
 import SearchWorkout from './SearchbarWorkout';
 
