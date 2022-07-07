@@ -1,18 +1,4 @@
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-}
+import Tooltip from '@mui/material/Tooltip';
 
 interface Exercise {
     exer: {

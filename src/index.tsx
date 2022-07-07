@@ -1,6 +1,4 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/appSingle';
 import './css/index.css';
 import './css/searchbar.css';
 import './css/model.css';
@@ -13,7 +11,6 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    Link
 } from 'react-router-dom';
 import SingleExercise from './pages/SingleExercise';
 import MultExercise from './pages/MultExercise';

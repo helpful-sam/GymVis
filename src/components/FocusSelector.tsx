@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -6,12 +5,12 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 
-interface Radio {
+interface RadioIn {
     radioValue: string,
     handleRadioChange: (event: any, value: any) => void
 }
 
-export default function RowRadioButtonsGroup({ radioValue, handleRadioChange }: Radio) {
+export default function RowRadioButtonsGroup({ radioValue, handleRadioChange }: RadioIn) {
     return (
         <FormControl className="radioButtons">
             <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
