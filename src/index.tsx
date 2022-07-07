@@ -10,29 +10,28 @@ import './css/menubar.css';
 import './css/radio.css';
 import Menubar from './components/Menubar';
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
 } from 'react-router-dom';
 import SingleExercise from './pages/SingleExercise';
 import MultExercise from './pages/MultExercise';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <>
-      <Menubar />
+    <BrowserRouter>
+        <>
+            <Menubar />
+        </>
 
-    </>
-
-    <Routes>
-      <Route path='/workout' element={<MultExercise/>} />
-      <Route path='/exercise' element={<SingleExercise/>}/>
-    </Routes>
-  </BrowserRouter>
+        <Routes>
+            <Route path='/workout' element={<MultExercise />} />
+            <Route path='/exercise' element={<SingleExercise />} />
+        </Routes>
+    </BrowserRouter>
 
 
 

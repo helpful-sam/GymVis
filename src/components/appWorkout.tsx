@@ -159,8 +159,9 @@ export default function AppSingle() {
         if (value == null) {
             return
         } else {
-            const inState = activeExercises.some(elem =>{
-                return JSON.stringify(value) === JSON.stringify(elem)});
+            const inState = activeExercises.some(elem => {
+                return JSON.stringify(value) === JSON.stringify(elem)
+            });
             if (!inState) {
                 const newEx = {
                     label: value["label"],
@@ -208,19 +209,20 @@ export default function AppSingle() {
         }
     }
 
-    return(
+    return (
         <>
             <div className="leftDiv">
-            <React.StrictMode>
-                <SearchWorkout exer={activeExercises} onUpdate={updateActive} />
-                <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove}/>
-            </React.StrictMode>
+                <React.StrictMode>
+                    <SearchWorkout exer={activeExercises} onUpdate={updateActive} />
+                    <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove} />
+                </React.StrictMode>
             </div>
             <div className="rightDiv">
-            <React.StrictMode>
-                <FocusSelector radioValue={radioValue} handleRadioChange={handleRadioChange}/>
-                <ModelWorkout />
-            </React.StrictMode>
+                <React.StrictMode>
+                    <FocusSelector radioValue={radioValue} handleRadioChange={handleRadioChange} />
+                    <ModelWorkout />
+                </React.StrictMode>
             </div>
         </>
-    )}
+    )
+}

@@ -192,18 +192,19 @@ export default function AppSingle() {
         colorMuscles(value)
     }
 
-    return(
+    return (
         <>
             <div className="leftDiv">
-            <React.StrictMode>
-                <Search exer={activeExercise} onUpdate={updateActive} />
-                <Active exer={activeExercise} />
-            </React.StrictMode>
+                <React.StrictMode>
+                    <Search exer={activeExercise} onUpdate={updateActive} />
+                    <Active exer={activeExercise} />
+                </React.StrictMode>
             </div>
             <div className="rightDiv">
-            <React.StrictMode>
-                <Model exer={activeExercise}/>
-            </React.StrictMode>
+                <React.StrictMode>
+                    <Model exer={activeExercise} />
+                </React.StrictMode>
             </div>
         </>
-    )}
+    )
+}
