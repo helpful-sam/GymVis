@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ExerciseCardsHolder from './ExerciseCardsHolder';
+import FocusSelector from './FocusSelector';
 import Model from './MuscleModel';
 import ModelWorkout from './MuscleModelWorkout';
 import SearchWorkout from './SearchbarWorkout';
@@ -21,9 +22,25 @@ interface ExerciseClean {
 
 export default function AppSingle() {
     // Sets default state & state update function.
-    const [activeExercises, setActiveExercise] = useState(
-        [] as ExerciseClean[]
-    )
+    const [activeExercises, setActiveExercise] = useState([] as ExerciseClean[])
+
+    function onRemove(exer: ExerciseClean) {
+        if (exer.label === "") {
+            return
+        } else {
+            setActiveExercise(activeExercises.filter((ex) => ex.label !== exer.label))
+        }
+        removeAllColorClasses()
+        colorStateRadio(activeExercises.filter((ex) => ex.label !== exer.label), radioValue)
+    }
+
+    const [radioValue, setRadioValue] = useState("target")
+
+    function handleRadioChange(event: any, value: any) {
+        setRadioValue(value);
+        removeAllColorClasses()
+        activeExercises.forEach((ex) => colorMusclesRadio(ex, value))
+    }
 
     // Converts muscle name to the class it belongs to.
     function muscle_to_class(muscle: string) {
@@ -123,8 +140,6 @@ export default function AppSingle() {
         });
     }
 
-
-
     // Colors the appropiate muscles by adding a "target", etc. class to the element.
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
@@ -136,19 +151,11 @@ export default function AppSingle() {
     }
 
     // Colors the muscles according to muscle functions in exercise.
-    function colorMuscles(exercise: ExerciseClean | null) {
-        if (exercise == null) {
-            removeAllColorClasses()
-            return
-        }
-        color(exercise, "target")
-        color(exercise, "synergists")
-        color(exercise, "dynamicStabilizers")
-        color(exercise, "stabilizers")
-        color(exercise, "antagonistStabilizer")
+    function colorMusclesRadio(exercise: ExerciseClean, radioState: string) {
+        color(exercise, radioState)
     }
 
-    // Updates the div with the active exercise.
+    // Updates the div with the active exercise cards.
     function updateActive(event: any, value: ExerciseClean | null) {
         if (value == null) {
             return
@@ -169,41 +176,37 @@ export default function AppSingle() {
                     force: value["force"],
                     url: value["url"],
                 }
-                setActiveExercise([...activeExercises, newEx])
+                setActiveExercise([...activeExercises, newEx]);
+                colorStateRadio([...activeExercises, newEx], radioValue);
             }
         }
-        colorMuscles(value)
-
     }
 
-    function removeMuscleColorClasses(muscle: string, focus: string) {
-        const muscles: Element[] = Array.from(document.getElementsByClassName(muscle_to_class(muscle)));
-        muscles.forEach((m: Element) => {
-            m.classList.remove(focus)
-        });
-    }
-
-    // Removes all muscle coloring.
-    function removeExerColorClasses(exer: ExerciseClean) {
-        exer.target.forEach((m) => removeMuscleColorClasses(m, "target"));
-        exer.synergists.forEach((m) => removeMuscleColorClasses(m, "synergists"));
-        exer.stabilizers.forEach((m) => removeMuscleColorClasses(m, "stabilizers"));
-        exer.dynamicStabilizers.forEach((m) => removeMuscleColorClasses(m, "dynamicStabilizers"));
-        exer.antagonistStabilizer.forEach((m) => removeMuscleColorClasses(m, "antagonistStabilizer"));
-    }
-
-    function recolorState(exerciseArray: ExerciseClean[]) {
-        exerciseArray.forEach((exer) => colorMuscles(exer))
-    }
-
-    function onRemove(exer: ExerciseClean) {
-        if (exer.label === "") {
-            return
+    function colorStateRadio(exerciseState: ExerciseClean[], radioValue: string) {
+        if (radioValue === "target") {
+            exerciseState.forEach((ex) => {
+                colorMusclesRadio(ex, "target")
+            })
+        } else if (radioValue === "synergists") {
+            exerciseState.forEach((ex) => {
+                colorMusclesRadio(ex, "synergists")
+            })
+        } else if (radioValue === "stabilizers") {
+            exerciseState.forEach((ex) => {
+                colorMusclesRadio(ex, "stabilizers")
+            })
+        } else if (radioValue === "dynamicStabilizers") {
+            exerciseState.forEach((ex) => {
+                colorMusclesRadio(ex, "dynamicStabilizers")
+            })
+        } else if (radioValue === "antagonistStabilizer") {
+            exerciseState.forEach((ex) => {
+                colorMusclesRadio(ex, "antagonistStabilizer")
+            })
         } else {
-            setActiveExercise(activeExercises.filter((ex) => ex.label !== exer.label))
+            // Place to add "all" to show everything.
+            return
         }
-        colorMuscles(null)
-        recolorState(activeExercises.filter((ex) => ex.label !== exer.label))
     }
 
     return(
@@ -216,6 +219,7 @@ export default function AppSingle() {
             </div>
             <div className="rightDiv">
             <React.StrictMode>
+                <FocusSelector radioValue={radioValue} handleRadioChange={handleRadioChange}/>
                 <ModelWorkout />
             </React.StrictMode>
             </div>

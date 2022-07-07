@@ -7,6 +7,7 @@ import './css/model.css';
 import './css/activeExercise.css';
 import './css/exerciseCards.css';
 import './css/menubar.css';
+import './css/radio.css';
 import Menubar from './components/Menubar';
 import {
   BrowserRouter,
