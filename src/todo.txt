@@ -14,11 +14,11 @@
 11) footer
         12) 2x zelfde exercise in workout check
         13) in card enkel en meervoud fixen
-14) coloring gaat niet bij elke focus helemaal goed. (?)
+        14) coloring gaat niet bij elke focus helemaal goed. (?)
 15) bij workout niet "chest - target" maar van welke oefnening hij komt
         16) radio buttons kleuren niet in
         17) card X knop goed plaatsen
-18) mobile friendly
+        18) mobile friendly
 19)
 20)
 21)
