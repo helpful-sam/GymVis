@@ -26,7 +26,7 @@ root.render(
 
         <Routes>
             <Route path='/workout' element={<MultExercise />} />
-            <Route path='/exercise' element={<SingleExercise />} />
+            <Route path='/' element={<SingleExercise />} />
         </Routes>
     </BrowserRouter>
 
