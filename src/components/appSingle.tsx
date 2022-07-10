@@ -45,6 +45,8 @@ export default function AppSingle() {
                 return "hip-adductors";
             case "Brachialis":
                 return "biceps";
+            case "Biceps Brachii, Short Head":
+                return "biceps";
             case "Brachioradialis":
                 return "forearms";
             case "Deltoid, Anterior":
