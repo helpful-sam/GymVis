@@ -1,3 +1,7 @@
 .active {
     text-align: center;
 }
+
+.activeText {
+    font-weight: 300;
+}
