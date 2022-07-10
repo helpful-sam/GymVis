@@ -38,9 +38,6 @@ interface ExerciseArr {
     onRemove: (exer: ExerciseClean) => void
 }
 
-
-
-
 export default function ExerciseCard({ exer, onRemove }: ExerciseArr) {
     function arrayToString(muscles: string[]) {
         let musclesSeperated = ""
