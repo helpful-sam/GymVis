@@ -5,6 +5,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, IconButton } from '@mui/material';
 
 interface ExerciseClean {
@@ -19,6 +21,7 @@ interface ExerciseClean {
     mechanics: string;
     force: string;
     url: string;
+    visib?: boolean;
 }
 
 interface ExerciseArr {
@@ -34,11 +37,13 @@ interface ExerciseArr {
         mechanics: string;
         force: string;
         url: string;
+        visib?: boolean;
     },
-    onRemove: (exer: ExerciseClean) => void
+    onRemove: (exer: ExerciseClean) => void,
+    toggleVisibility: (exer: ExerciseClean) => void
 }
 
-export default function ExerciseCard({ exer, onRemove }: ExerciseArr) {
+export default function ExerciseCard({ exer, onRemove, toggleVisibility }: ExerciseArr) {
     function arrayToString(muscles: string[]) {
         let musclesSeperated = ""
         for (let muscle of muscles) {
@@ -55,7 +60,7 @@ export default function ExerciseCard({ exer, onRemove }: ExerciseArr) {
     return (
         <>
             <Accordion>
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Box className={exer.visib ? "accordionVisibOn" : "accordionVisibOff"} sx={{ display: "flex", justifyContent: "space-between" }}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -63,12 +68,16 @@ export default function ExerciseCard({ exer, onRemove }: ExerciseArr) {
                         <Typography>{exer.label}</Typography>
                     </AccordionSummary>
                     <Box sx={{ display: "flex" }}>
-                        <IconButton disableRipple={true} onClick={() => onRemove(exer)}>
+                        <IconButton title={exer.visib ? "Hide exercise" : "Unhide exercise"} disableRipple={true} onClick={() => toggleVisibility(exer)}>
+                            {exer.visib ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
+                        </IconButton>
+                        <IconButton title="Remove exercise" disableRipple={true} onClick={() => onRemove(exer)}>
                             <CloseIcon fontSize="small" />
                         </IconButton>
+
                     </Box>
                 </Box>
-                <AccordionDetails>
+                <AccordionDetails className={exer.visib ? "accordionVisibOn" : "accordionVisibOff"}>
                     {exer.target[0] ?
                         exer.target[1] ?
                             <div className="textContainer"><h5 className="title">Target muscles: </h5><h5 className="tekst">{arrayToString(exer.target)}</h5></div>
@@ -109,7 +118,7 @@ export default function ExerciseCard({ exer, onRemove }: ExerciseArr) {
                             <div className="textContainer"><h5 className="title">Antagonistic stabilizing muscle:</h5><h5 className="tekst">{arrayToString(exer.antagonistStabilizer)}</h5></div>
                         :
                         ""}
-                    <div className="textContainer"><h5 className="title">Force: </h5><h5 className="tekst">{exer.force}</h5></div>
+                    <div className="textContainer"><h5 className="title">Type: </h5><h5 className="tekst">{exer.mechanics} {exer.force}</h5></div>
                 </AccordionDetails>
             </Accordion>
         </>

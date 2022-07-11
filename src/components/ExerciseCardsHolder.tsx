@@ -12,6 +12,7 @@ interface ExerciseClean {
     mechanics: string;
     force: string;
     url: string;
+    visib?: boolean;
 }
 
 interface ExerciseArr {
@@ -28,13 +29,14 @@ interface ExerciseArr {
         force: string;
         url: string;
     }[],
-    onRemove: (exer: ExerciseClean) => void
+    onRemove: (exer: ExerciseClean) => void,
+    toggleVisibility: (exer: ExerciseClean) => void
 }
 
-export default function ExerciseCardsHolder({ actives, onRemove }: ExerciseArr) {
+export default function ExerciseCardsHolder({ actives, onRemove, toggleVisibility }: ExerciseArr) {
     return (
         <div className="exerciseCardContainer">
-            {actives.map((ex) => <ExerciseCard exer={ex} onRemove={onRemove} />)}
+            {actives.map((ex) => <ExerciseCard exer={ex} onRemove={onRemove} toggleVisibility={toggleVisibility} />)}
         </div>
 
 

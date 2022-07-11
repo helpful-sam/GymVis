@@ -14,6 +14,7 @@ interface ExerciseClean {
     mechanics: string;
     force: string;
     url: string;
+    visib?: boolean;
 }
 
 interface Exercise {
@@ -29,6 +30,7 @@ interface Exercise {
         mechanics: string;
         force: string;
         url: string;
+        visib?: boolean;
     }[],
     onUpdate: (event: any, value: ExerciseClean | null) => void
 }
@@ -36,7 +38,6 @@ interface Exercise {
 export default function SearchWorkout({ exer, onUpdate }: Exercise) {
     // List of all the exercise objects.
     const exercises = allExercises()
-
 
     return (
         <>

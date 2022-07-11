@@ -17,6 +17,7 @@ interface ExerciseClean {
     mechanics: string;
     force: string;
     url: string;
+    visib?: boolean;
 }
 
 export default function AppSingle() {
@@ -31,6 +32,28 @@ export default function AppSingle() {
         }
         removeAllColorClasses()
         colorStateRadio(activeExercises.filter((ex) => ex.label !== exer.label), radioValue)
+    }
+
+    function toggleVisibility(exer: ExerciseClean) {
+        if (exer.label === "") {
+            return
+        } else {
+            let newActiveExercises = [] as ExerciseClean[]
+            for (let exercise of activeExercises) {
+                if (exercise.label === exer.label) {
+                    if (exercise.visib) {
+                        exercise.visib = false
+                    } else {
+                        exercise.visib = true
+                    }
+                    newActiveExercises = [...newActiveExercises, exercise]
+                } else {
+                    newActiveExercises = [...newActiveExercises, exercise]
+                }
+            }
+            setActiveExercise(newActiveExercises)
+            handleRadioChange("a", radioValue)
+        }
     }
 
     const [radioValue, setRadioValue] = useState("target")
@@ -143,11 +166,14 @@ export default function AppSingle() {
 
     // Colors the appropiate muscles by adding a "target", etc. class to the element.
     function color(exercise: ExerciseClean, focus: string) {
-        for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
-            let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
-            for (var i = 0; i < el.length; i++) {
-                el[i].classList.add(focus);
+        for (let focus_muscle of exercise[focus as keyof ExerciseClean] as string[]) {
+            if (exercise.visib) {
+                let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
+                for (var i = 0; i < el.length; i++) {
+                    el[i].classList.add(focus);
+                }
             }
+
         }
     }
 
@@ -177,6 +203,7 @@ export default function AppSingle() {
                     mechanics: value["mechanics"],
                     force: value["force"],
                     url: value["url"],
+                    visib: true
                 }
                 setActiveExercise([...activeExercises, newEx]);
                 colorStateRadio([...activeExercises, newEx], radioValue);
@@ -216,7 +243,7 @@ export default function AppSingle() {
             <div className="leftDiv">
                 <React.StrictMode>
                     <SearchWorkout exer={activeExercises} onUpdate={updateActive} />
-                    <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove} />
+                    <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove} toggleVisibility={toggleVisibility} />
                 </React.StrictMode>
             </div>
             <div className="rightDiv">
