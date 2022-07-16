@@ -1,8 +1,10 @@
 # node modules folder
 node_modules
 
-# Standard readMe file
+# Standard readme file
 *.md
 
 # todo text file.
 todo.txt
+
+tools/
