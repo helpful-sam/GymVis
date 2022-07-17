@@ -19,7 +19,7 @@
         16) radio buttons kleuren niet in
         17) card X knop goed plaatsen
 18) mobile friendly
-19) Tooltip meerdere focus laten zien (stab, dynstab) etc.
+        19) Tooltip meerdere focus laten zien (stab, dynstab) etc.
 20)
 21)
 22)

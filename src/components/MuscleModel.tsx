@@ -74,28 +74,32 @@ export default function Model({ exer }: Exercise) {
         let focus = "";
         elements.forEach((el) => {
             if (el.classList.contains("target")) {
-                focus = " - Target"
-                return
+                if (!focus.includes(" - Target")) {
+                    focus = focus + " - Target"
+                }
             }
-            else if (el.classList.contains("synergists")) {
-                focus = " - Synergist"
-                return
+            if (el.classList.contains("synergists")) {
+                if (!focus.includes(" - Synergist")) {
+                    focus = focus + " - Synergist"
+                }
             }
-            else if (el.classList.contains("dynamicStabilizers")) {
-                focus = " - Dynamic stabilizer"
-                return
+            if (el.classList.contains("dynamicStabilizers")) {
+                if (!focus.includes(" - Dynamic stabilizer")) {
+                    focus = focus + " - Dynamic stabilizer"
+                }
             }
-            else if (el.classList.contains("stabilizers")) {
-                focus = " - Stabilizer"
-                return
+            if (el.classList.contains("stabilizers")) {
+                if (!focus.includes(" - Stabilizer")) {
+                    focus = focus + " - Stabilizer"
+                }
             }
-            else if (el.classList.contains("antagonistStabilizer")) {
-                focus = " - Antagonistic stabilizer"
-                return
+            if (el.classList.contains("antagonistStabilizer")) {
+                if (!focus.includes(" - Antagonistic stabilizer")) {
+                    focus = focus + " - Antagonistic stabilizer"
+                }
             }
         });
-        const tooltipText = muscle + focus
-        const tooltip = <h3> {tooltipText} </h3>
+        const tooltip = <h3> <i>{muscle}</i> {focus} </h3>
 
         return tooltip
     }
