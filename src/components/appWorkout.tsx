@@ -24,6 +24,7 @@ export default function AppSingle() {
     // Sets default state & state update function.
     const [activeExercises, setActiveExercise] = useState([] as ExerciseClean[])
 
+    // Removes the clicked on exercise from the state & updates colors in model.
     function onRemove(exer: ExerciseClean) {
         if (exer.label === "") {
             return
@@ -34,6 +35,7 @@ export default function AppSingle() {
         colorStateRadio(activeExercises.filter((ex) => ex.label !== exer.label), radioValue)
     }
 
+    // Toggles visibility of model colors of the clicked on exercise.
     function toggleVisibility(exer: ExerciseClean) {
         if (exer.label === "") {
             return
