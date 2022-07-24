@@ -36,8 +36,12 @@ export default function AppSingle() {
         }
     )
 
-    // Converts muscle name to the class it belongs to.
-    function muscle_to_class(muscle: string) {
+    /**
+     * Converts muscle name to the class it belongs to.
+     * @param {string} muscle - A muscle name used in the exercise dictionaries.
+     * @returns {string} - The name of the class that represents the muscle name.
+     */
+    function muscle_to_class(muscle: string): string {
         switch (muscle) {
             case "Adductor Magnus":
                 return "hip-adductors";
@@ -124,8 +128,10 @@ export default function AppSingle() {
         }
     }
 
-    // Removes all muscle coloring.
-    function removeColorClasses() {
+    /**
+     * Removes all coloring from the model.
+     */
+    function removeAllColorClasses() {
         const muscles: Element[] = Array.from(document.getElementsByClassName("muscle"));
         muscles.forEach((m: Element) => {
             m.classList.remove("target")
@@ -136,7 +142,12 @@ export default function AppSingle() {
         });
     }
 
-    // Colors the appropiate muscles by adding a "target", etc. class to the element.
+    /**
+     * Colors the worked muscles of a given focus of a given exercise.
+     * @param {ExerciseClean} exercise - An exercise object that will be colored.
+     * @param {string} focus - The focus of the exercise that needs to be
+     * colored, e.g. "target", "stabilizer", etc.
+     */
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean]) {
             let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
@@ -146,10 +157,14 @@ export default function AppSingle() {
         }
     }
 
-    // Colors the muscles according to muscle functions in exercise.
+    /**
+     * Colors every muscle of an exercise.
+     * @param {ExerciseClean | null} exercise - The exercise whose muscles are
+     * to be colored.
+     */
     function colorMuscles(exercise: ExerciseClean | null) {
         if (exercise == null) {
-            removeColorClasses()
+            removeAllColorClasses()
             return
         }
         color(exercise, "target")
@@ -159,9 +174,14 @@ export default function AppSingle() {
         color(exercise, "antagonistStabilizer")
     }
 
-    // Updates the div with the active exercise.
-    function updateActive(event: any, value: ExerciseClean | null) {
-        if (value == null) {
+    /**
+     * Updates the left div & model with the current active exercise.
+     * @param _event
+     * @param {ExerciseClean | null} exercise - The clicked exercise that is to
+     * be updated.
+     */
+    function updateActive(_event: any, exercise: ExerciseClean | null) {
+        if (exercise == null) {
             setActiveExercise({
                 label: "",
                 target: [""],
@@ -177,21 +197,21 @@ export default function AppSingle() {
             })
         } else {
             setActiveExercise({
-                label: value["label"],
-                target: value["target"],
-                synergists: value["synergists"],
-                dynamicStabilizers: value["dynamicStabilizers"],
-                stabilizers: value["stabilizers"],
-                antagonistStabilizer: value["antagonistStabilizer"],
-                prep: value["prep"],
-                exec: value["exec"],
-                mechanics: value["mechanics"],
-                force: value["force"],
-                url: value["url"],
+                label: exercise["label"],
+                target: exercise["target"],
+                synergists: exercise["synergists"],
+                dynamicStabilizers: exercise["dynamicStabilizers"],
+                stabilizers: exercise["stabilizers"],
+                antagonistStabilizer: exercise["antagonistStabilizer"],
+                prep: exercise["prep"],
+                exec: exercise["exec"],
+                mechanics: exercise["mechanics"],
+                force: exercise["force"],
+                url: exercise["url"],
             })
         }
         colorMuscles(null)
-        colorMuscles(value)
+        colorMuscles(exercise)
     }
 
     return (

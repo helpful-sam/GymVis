@@ -15,8 +15,13 @@ interface Exercise {
 }
 
 export default function Active({ exer }: Exercise) {
-    // Returns a string with the muscles from the array, semicolon seperated.
-    function arrayToString(muscles: string[]) {
+    /**
+     * Converts an array of muscles into a string seperated by & characters.
+     * @param {string[]} muscles - An array of muscle names.
+     * @returns {string} - A string of the elements in the array, seperated by
+     * '&' characters.
+     */
+    function arrayToString(muscles: string[]): string {
         let musclesSeperated = ""
         for (let muscle of muscles) {
             if (musclesSeperated) {

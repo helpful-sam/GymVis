@@ -18,9 +18,13 @@ interface Exercise {
 
 export default function Model({ exer }: Exercise) {
 
-    // Converts the muscle name the tooltip shows to the name of the relevant
-    // class name.
-    function tooltipToClass(muscleName: string) {
+    /**
+     * Converts the muscle name that the tooltip shows to the name of the
+     * relevant class name.
+     * @param {stromg} muscleName - The muscle name the tooltip shows.
+     * @returns {string} - The class name.
+     */
+    function tooltipToClass(muscleName: string): string {
         switch (muscleName) {
             case "Abdominals":
                 return "abdominals";
@@ -71,14 +75,18 @@ export default function Model({ exer }: Exercise) {
         }
     }
 
-    // Returns the html element containing the text for the tooltip.
-    function muscleFocus(muscle: string) {
+    /**
+     * Returns an HTML element containing the text for the tooltip.
+     * @param {string} muscle - The muscle that the tooltip shows.
+     * @returns {JSX.Element} - The HTML element that the tooltip will show.
+     */
+    function muscleFocus(muscle: string): JSX.Element {
         // Gets all muscle elements with the classname of the relevant muscle.
-        let elements = Array.from(document.getElementsByClassName(tooltipToClass(muscle)));
+        let modelMuscleElements = Array.from(document.getElementsByClassName(tooltipToClass(muscle)));
         let focus = "";
         // Checks for every element if the muscle is a target, synergist, etc.
         // If this is the case, add text to tooltip.
-        elements.forEach((el) => {
+        modelMuscleElements.forEach((el) => {
             if (el.classList.contains("target")) {
                 if (!focus.includes(" - Target")) {
                     focus = focus + " - Target"

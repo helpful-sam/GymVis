@@ -24,7 +24,10 @@ export default function AppSingle() {
     // Sets default state & state update function.
     const [activeExercises, setActiveExercise] = useState([] as ExerciseClean[])
 
-    // Removes the clicked on exercise from the state & updates colors in model.
+    /**
+     * Removes the clicked on exercise from the state & updates colors in model.
+     * @param {ExerciseClean} exer - The exercise that is to be removed.
+     */
     function onRemove(exer: ExerciseClean) {
         if (exer.label === "") {
             return
@@ -35,7 +38,10 @@ export default function AppSingle() {
         colorStateRadio(activeExercises.filter((ex) => ex.label !== exer.label), radioValue)
     }
 
-    // Toggles visibility of model colors of the clicked on exercise.
+    /**
+     * Toggles visibility of model colors of the clicked on exercise.
+     * @param {ExerciseClean} exer - The exercise that is to be hidden or shown.
+     */
     function toggleVisibility(exer: ExerciseClean) {
         if (exer.label === "") {
             return
@@ -60,13 +66,22 @@ export default function AppSingle() {
 
     const [radioValue, setRadioValue] = useState("target")
 
-    function handleRadioChange(event: any, value: any) {
-        setRadioValue(value);
+    /**
+     * Handles the change in radio by only showing the active radio selection.
+     * @param _event
+     * @param {string} radioValue - The new radio value.
+     */
+    function handleRadioChange(_event: any, radioValue: string) {
+        setRadioValue(radioValue);
         removeAllColorClasses()
-        activeExercises.forEach((ex) => colorMusclesRadio(ex, value))
+        activeExercises.forEach((ex) => colorMusclesRadio(ex, radioValue))
     }
 
-    // Converts muscle name to the class it belongs to.
+    /**
+     * Converts muscle name to the class it belongs to.
+     * @param muscle - A muscle name used in the exercise dictionaries.
+     * @returns {string} - The name of the class that represents the muscle name.
+     */
     function muscle_to_class(muscle: string) {
         switch (muscle) {
             case "Adductor Magnus":
@@ -154,7 +169,9 @@ export default function AppSingle() {
         }
     }
 
-    // Removes all muscle coloring.
+    /**
+     * Removes all coloring from the model.
+     */
     function removeAllColorClasses() {
         const muscles: Element[] = Array.from(document.getElementsByClassName("muscle"));
         muscles.forEach((m: Element) => {
@@ -166,7 +183,12 @@ export default function AppSingle() {
         });
     }
 
-    // Colors the appropiate muscles by adding a "target", etc. class to the element.
+    /**
+     * Colors the worked muscles of a given focus of a given exercise.
+     * @param {ExerciseClean} exercise - An exercise object that will be colored.
+     * @param {string} focus - The focus of the exercise that needs to be
+     * colored, e.g. "target", "stabilizer", etc.
+     */
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean] as string[]) {
             if (exercise.visib) {
@@ -179,32 +201,32 @@ export default function AppSingle() {
         }
     }
 
-    // Colors the muscles according to muscle functions in exercise.
-    function colorMusclesRadio(exercise: ExerciseClean, radioState: string) {
-        color(exercise, radioState)
-    }
-
-    // Updates the div with the active exercise cards.
-    function updateActive(event: any, value: ExerciseClean | null) {
-        if (value == null) {
+    /**
+     * Adds the clicked exercise to the state of current active exercises.
+     * @param _event
+     * @param {ExerciseClean | null} exercise - The clicked exercise that is to
+     * be added to the active exercises.
+     */
+    function updateActive(_event: any, exercise: ExerciseClean | null) {
+        if (exercise == null) {
             return
         } else {
             const inState = activeExercises.some(elem => {
-                return JSON.stringify(value) === JSON.stringify(elem)
+                return JSON.stringify(exercise) === JSON.stringify(elem)
             });
             if (!inState) {
                 const newEx = {
-                    label: value["label"],
-                    target: value["target"],
-                    synergists: value["synergists"],
-                    dynamicStabilizers: value["dynamicStabilizers"],
-                    stabilizers: value["stabilizers"],
-                    antagonistStabilizer: value["antagonistStabilizer"],
-                    prep: value["prep"],
-                    exec: value["exec"],
-                    mechanics: value["mechanics"],
-                    force: value["force"],
-                    url: value["url"],
+                    label: exercise["label"],
+                    target: exercise["target"],
+                    synergists: exercise["synergists"],
+                    dynamicStabilizers: exercise["dynamicStabilizers"],
+                    stabilizers: exercise["stabilizers"],
+                    antagonistStabilizer: exercise["antagonistStabilizer"],
+                    prep: exercise["prep"],
+                    exec: exercise["exec"],
+                    mechanics: exercise["mechanics"],
+                    force: exercise["force"],
+                    url: exercise["url"],
                     visib: true
                 }
                 setActiveExercise([...activeExercises, newEx]);
@@ -213,26 +235,42 @@ export default function AppSingle() {
         }
     }
 
+    /**
+     * Colors the active radio focus of a given exercise.
+     * @param {ExerciseClean} exercise - The exercise that is to be colored.
+     * @param {string} focus - The exercise focus that is to be colored, e.g.
+     * "target".
+     */
+     function colorMusclesRadio(exercise: ExerciseClean, focus: string) {
+        color(exercise, focus)
+    }
+
+    /**
+     * Colors the active radio focus of all active exercises.
+     * @param {ExerciseClean[]} exerciseState - The state with curretn active
+     * exercises.
+     * @param {string} radioValue - The radio state of active focus.
+     */
     function colorStateRadio(exerciseState: ExerciseClean[], radioValue: string) {
         if (radioValue === "target") {
             exerciseState.forEach((ex) => {
-                colorMusclesRadio(ex, "target")
+                colorMusclesRadio(ex, radioValue)
             })
         } else if (radioValue === "synergists") {
             exerciseState.forEach((ex) => {
-                colorMusclesRadio(ex, "synergists")
+                colorMusclesRadio(ex, radioValue)
             })
         } else if (radioValue === "stabilizers") {
             exerciseState.forEach((ex) => {
-                colorMusclesRadio(ex, "stabilizers")
+                colorMusclesRadio(ex, radioValue)
             })
         } else if (radioValue === "dynamicStabilizers") {
             exerciseState.forEach((ex) => {
-                colorMusclesRadio(ex, "dynamicStabilizers")
+                colorMusclesRadio(ex, radioValue)
             })
         } else if (radioValue === "antagonistStabilizer") {
             exerciseState.forEach((ex) => {
-                colorMusclesRadio(ex, "antagonistStabilizer")
+                colorMusclesRadio(ex, radioValue)
             })
         } else {
             // Place to add "all" to show everything.
