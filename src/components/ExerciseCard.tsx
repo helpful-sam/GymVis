@@ -8,42 +8,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, IconButton } from '@mui/material';
+import ExerciseArrIndividual from './InterfaceExerciseArrIndividual';
 
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-    visib?: boolean;
-}
-
-interface ExerciseArr {
-    actives: {
-        label: string;
-        target: string[];
-        synergists: string[];
-        dynamicStabilizers: string[];
-        stabilizers: string[];
-        antagonistStabilizer: string[];
-        prep: string;
-        exec: string;
-        mechanics: string;
-        force: string;
-        url: string;
-        visib?: boolean;
-    },
-    onRemove: (exer: ExerciseClean) => void,
-    toggleVisibility: (exer: ExerciseClean) => void
-}
-
-export default function ExerciseCard({ actives, onRemove, toggleVisibility }: ExerciseArr) {
+export default function ExerciseCard({ actives, onRemove, toggleVisibility }: ExerciseArrIndividual) {
     /**
      * Converts an array of muscles into a string seperated by & characters.
      * @param {string[]} muscles - An array of muscle names.
