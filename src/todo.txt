@@ -20,7 +20,7 @@
         17) card X knop goed plaatsen
 18) mobile friendly
         19) Tooltip meerdere focus laten zien (stab, dynstab) etc.
-20)
+        20) Interface export files integratie
 21)
 22)
 23)
