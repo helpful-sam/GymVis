@@ -82,7 +82,7 @@ export default function AppSingle() {
      * @param muscle - A muscle name used in the exercise dictionaries.
      * @returns {string} - The name of the class that represents the muscle name.
      */
-    function muscle_to_class(muscle: string) {
+    function muscleToClass(muscle: string): string {
         switch (muscle) {
             case "Adductor Magnus":
                 return "hip-adductors";
@@ -91,6 +91,8 @@ export default function AppSingle() {
             case "Brachialis":
                 return "biceps";
             case "Biceps Brachii, Short Head":
+                return "biceps";
+            case "Biceps Brachii":
                 return "biceps";
             case "Brachioradialis":
                 return "forearms";
@@ -192,7 +194,7 @@ export default function AppSingle() {
     function color(exercise: ExerciseClean, focus: string) {
         for (let focus_muscle of exercise[focus as keyof ExerciseClean] as string[]) {
             if (exercise.visib) {
-                let el = document.getElementsByClassName(muscle_to_class(focus_muscle))
+                let el = document.getElementsByClassName(muscleToClass(focus_muscle))
                 for (var i = 0; i < el.length; i++) {
                     el[i].classList.add(focus);
                 }
