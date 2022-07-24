@@ -97,7 +97,6 @@ export default function ModelWorkout() {
         return tooltip
     }
 
-
     return (
         <svg id="man_pic" xmlns="http://www.w3.org/2000/svg" width="700" height="800" viewBox="0 0 700 800">
             <image xlinkHref="male.jpg" width="700" height="800" />
