@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box, IconButton } from '@mui/material';
-import ExerciseArrIndividual from './InterfaceExerciseArrIndividual';
+import ExerciseArrIndividual from '../interfaces/InterfaceExerciseArrIndividual';
 
 export default function ExerciseCard({ actives, onRemove, toggleVisibility }: ExerciseArrIndividual) {
     /**

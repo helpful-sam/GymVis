@@ -1,20 +1,5 @@
 import Tooltip from '@mui/material/Tooltip';
-
-interface Exercise {
-    exer: {
-        label: string;
-        target: string[];
-        synergists: string[];
-        dynamicStabilizers: string[];
-        stabilizers: string[];
-        antagonistStabilizer: string[];
-        prep: string;
-        exec: string;
-        mechanics: string;
-        force: string;
-        url: string;
-    },
-}
+import Exercise from '../interfaces/InterfaceExercise';
 
 export default function Model({ exer }: Exercise) {
 
@@ -117,7 +102,6 @@ export default function Model({ exer }: Exercise) {
 
         return tooltip
     }
-
 
     return (
         <svg id="man_pic" xmlns="http://www.w3.org/2000/svg" width="700" height="800" viewBox="0 0 700 800">

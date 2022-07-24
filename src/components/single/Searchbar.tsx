@@ -1,20 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import allExercises from "./Exercises";
-
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-}
+import allExercises from "../Exercises";
+import ExerciseClean from '../interfaces/InterfaceExerciseClean';
 
 interface Exercise {
     exer: {

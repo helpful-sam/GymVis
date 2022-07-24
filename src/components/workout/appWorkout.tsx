@@ -1,34 +1,19 @@
 import React, { useState } from 'react';
 import ExerciseCardsHolder from './ExerciseCardsHolder';
 import FocusSelector from './FocusSelector';
+import ExerciseCleanVisib from '../interfaces/InterfaceExerciseCleanVisib';
 import ModelWorkout from './MuscleModelWorkout';
 import SearchWorkout from './SearchbarWorkout';
 
-// Exercise interface.
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-    visib?: boolean;
-}
-
 export default function AppSingle() {
     // Sets default state & state update function.
-    const [activeExercises, setActiveExercise] = useState([] as ExerciseClean[])
+    const [activeExercises, setActiveExercise] = useState([] as ExerciseCleanVisib[])
 
     /**
      * Removes the clicked on exercise from the state & updates colors in model.
-     * @param {ExerciseClean} exer - The exercise that is to be removed.
+     * @param {ExerciseCleanVisib} exer - The exercise that is to be removed.
      */
-    function onRemove(exer: ExerciseClean) {
+    function onRemove(exer: ExerciseCleanVisib) {
         if (exer.label === "") {
             return
         } else {
@@ -40,13 +25,13 @@ export default function AppSingle() {
 
     /**
      * Toggles visibility of model colors of the clicked on exercise.
-     * @param {ExerciseClean} exer - The exercise that is to be hidden or shown.
+     * @param {ExerciseCleanVisib} exer - The exercise that is to be hidden or shown.
      */
-    function toggleVisibility(exer: ExerciseClean) {
+    function toggleVisibility(exer: ExerciseCleanVisib) {
         if (exer.label === "") {
             return
         } else {
-            let newActiveExercises = [] as ExerciseClean[]
+            let newActiveExercises = [] as ExerciseCleanVisib[]
             for (let exercise of activeExercises) {
                 if (exercise.label === exer.label) {
                     if (exercise.visib) {
@@ -187,12 +172,12 @@ export default function AppSingle() {
 
     /**
      * Colors the worked muscles of a given focus of a given exercise.
-     * @param {ExerciseClean} exercise - An exercise object that will be colored.
+     * @param {ExerciseCleanVisib} exercise - An exercise object that will be colored.
      * @param {string} focus - The focus of the exercise that needs to be
      * colored, e.g. "target", "stabilizer", etc.
      */
-    function color(exercise: ExerciseClean, focus: string) {
-        for (let focus_muscle of exercise[focus as keyof ExerciseClean] as string[]) {
+    function color(exercise: ExerciseCleanVisib, focus: string) {
+        for (let focus_muscle of exercise[focus as keyof ExerciseCleanVisib] as string[]) {
             if (exercise.visib) {
                 let el = document.getElementsByClassName(muscleToClass(focus_muscle))
                 for (var i = 0; i < el.length; i++) {
@@ -206,10 +191,10 @@ export default function AppSingle() {
     /**
      * Adds the clicked exercise to the state of current active exercises.
      * @param _event
-     * @param {ExerciseClean | null} exercise - The clicked exercise that is to
+     * @param {ExerciseCleanVisib | null} exercise - The clicked exercise that is to
      * be added to the active exercises.
      */
-    function updateActive(_event: any, exercise: ExerciseClean | null) {
+    function updateActive(_event: any, exercise: ExerciseCleanVisib | null) {
         if (exercise == null) {
             return
         } else {
@@ -239,21 +224,21 @@ export default function AppSingle() {
 
     /**
      * Colors the active radio focus of a given exercise.
-     * @param {ExerciseClean} exercise - The exercise that is to be colored.
+     * @param {ExerciseCleanVisib} exercise - The exercise that is to be colored.
      * @param {string} focus - The exercise focus that is to be colored, e.g.
      * "target".
      */
-     function colorMusclesRadio(exercise: ExerciseClean, focus: string) {
+     function colorMusclesRadio(exercise: ExerciseCleanVisib, focus: string) {
         color(exercise, focus)
     }
 
     /**
      * Colors the active radio focus of all active exercises.
-     * @param {ExerciseClean[]} exerciseState - The state with curretn active
+     * @param {ExerciseCleanVisib[]} exerciseState - The state with curretn active
      * exercises.
      * @param {string} radioValue - The radio state of active focus.
      */
-    function colorStateRadio(exerciseState: ExerciseClean[], radioValue: string) {
+    function colorStateRadio(exerciseState: ExerciseCleanVisib[], radioValue: string) {
         if (radioValue === "target") {
             exerciseState.forEach((ex) => {
                 colorMusclesRadio(ex, radioValue)

@@ -1,20 +1,6 @@
-interface Exercise {
-    exer: {
-        label: string;
-        target: string[];
-        synergists: string[];
-        dynamicStabilizers: string[];
-        stabilizers: string[];
-        antagonistStabilizer: string[];
-        prep: string;
-        exec: string;
-        mechanics: string;
-        force: string;
-        url: string;
-    },
-}
+import Exercise from "../interfaces/InterfaceExercise";
 
-export default function Active({ exer }: Exercise) {
+export default function Active({ exer }: Exercise): JSX.Element {
     /**
      * Converts an array of muscles into a string seperated by & characters.
      * @param {string[]} muscles - An array of muscle names.

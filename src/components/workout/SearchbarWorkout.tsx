@@ -1,21 +1,8 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import allExercises from "./Exercises";
+import allExercises from "../Exercises";
+import ExerciseClean from '../interfaces/InterfaceExerciseClean';
 
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-    visib?: boolean;
-}
 
 interface Exercise {
     exer: {
@@ -30,7 +17,6 @@ interface Exercise {
         mechanics: string;
         force: string;
         url: string;
-        visib?: boolean;
     }[],
     onUpdate: (event: any, value: ExerciseClean | null) => void
 }

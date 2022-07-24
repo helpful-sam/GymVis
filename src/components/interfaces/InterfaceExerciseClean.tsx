@@ -1,6 +1,5 @@
 // Exercise interface.
 interface ExerciseClean {
-    visib?: boolean;
     label: string;
     target: string[];
     synergists: string[];
@@ -12,7 +11,6 @@ interface ExerciseClean {
     mechanics: string;
     force: string;
     url: string;
-
 }
 
 export default ExerciseClean

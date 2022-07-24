@@ -1,22 +1,8 @@
 import React, { useState } from 'react';
 import Active from './ActiveExercise';
+import ExerciseClean from '../interfaces/InterfaceExerciseClean';
 import Model from './MuscleModel';
 import Search from './Searchbar';
-
-// Exercise interface.
-interface ExerciseClean {
-    label: string;
-    target: string[];
-    synergists: string[];
-    dynamicStabilizers: string[];
-    stabilizers: string[];
-    antagonistStabilizer: string[];
-    prep: string;
-    exec: string;
-    mechanics: string;
-    force: string;
-    url: string;
-}
 
 export default function AppSingle() {
     // Sets default state & state update function.
