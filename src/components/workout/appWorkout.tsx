@@ -195,7 +195,7 @@ export default function AppSingle() {
      * be added to the active exercises.
      */
     function updateActive(_event: any, exercise: ExerciseCleanVisib | null) {
-        if (exercise == null) {
+        if (exercise === null) {
             return
         } else {
             const inState = activeExercises.some(elem => {

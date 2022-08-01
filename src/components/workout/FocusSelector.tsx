@@ -18,7 +18,7 @@ export default function RowRadioButtonsGroup({ radioValue, handleRadioChange }: 
                 value={radioValue}
                 onChange={handleRadioChange}
             >
-                {/* <FormControlLabel value="All" control={<Radio />} label="All" /> */}
+                {/* <FormControlLabel value="all" control={<Radio />} label="All" /> */}
                 <FormControlLabel value="target" control={<Radio />} label="Targets" />
                 <FormControlLabel value="synergists" control={<Radio />} label="Synergists" />
                 <FormControlLabel value="stabilizers" control={<Radio />} label="Stabilizers" />
