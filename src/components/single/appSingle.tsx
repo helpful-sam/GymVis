@@ -151,7 +151,7 @@ export default function AppSingle() {
      * to be colored.
      */
     function colorMuscles(exercise: ExerciseClean | null) {
-        if (exercise === null) {
+        if (exercise == null) {
             removeAllColorClasses()
             return
         }
@@ -169,7 +169,7 @@ export default function AppSingle() {
      * be updated.
      */
     function updateActive(_event: any, exercise: ExerciseClean | null) {
-        if (exercise === null) {
+        if (exercise == null) {
             setActiveExercise({
                 label: "",
                 target: [""],
