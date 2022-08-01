@@ -5,7 +5,7 @@ export default function Menubar() {
         <div className="menubar">
             <ul>
                 <li className="menuOption">
-                    <Link to="/GymVis">Exercise Info</Link> {' '}
+                    <Link to="/">Exercise Info</Link> {' '}
                 </li>
                 <li className="menuOption">
                     <Link to="/workout">Workout Creator</Link> {' '}
