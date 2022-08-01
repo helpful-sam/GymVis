@@ -1,6 +1,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import Exercise from '../interfaces/InterfaceExercise';
-import ModelImg from '../../maleModel.jpg';
+import ModelImg from 'maleModel.jpg';
 
 export default function Model({ exer }: Exercise) {
 
@@ -105,8 +105,8 @@ export default function Model({ exer }: Exercise) {
     }
 
     return (
-        <svg id="man_pic" xmlns={ModelImg} width="700" height="800" viewBox="0 0 700 800">
-            <image xlinkHref="male.jpg" width="700" height="800" />
+        <svg id="man_pic" xmlns="http://www.w3.org/2000/svg" width="700" height="800" viewBox="0 0 700 800">
+            <image xlinkHref={ModelImg} width="700" height="800" />
             <Tooltip title={generateTooltipText("Abdominals")}>
                 <path className="muscle abdominals" data-html="true" data-container="#canvas-container" d="M 158.25,219.88 L 170.53,213.18 196.25,212.12 214.75,218.00 219.38,232.50 219.38,249.88 219.38,255.50 221.38,265.39 224.62,277.25 224.62,293.12 223.62,313.25 222.62,320.88 217.38,331.38 217.38,349.25 205.50,389.38 191.51,389.09 186.37,383.28 175.75,358.50 173.50,346.53 173.50,333.25 162.88,315.88 161.62,301.25 158.62,292.25 156.62,257.00 153.34,248.61 153.04,234.89 158.25,219.88 Z"></path>
             </Tooltip>
