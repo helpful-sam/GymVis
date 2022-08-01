@@ -99,6 +99,7 @@ export default function Model({ exer }: Exercise) {
                 }
             }
         });
+
         const tooltip = <h3> <i>{muscle}</i> {focus} </h3>
 
         return tooltip
