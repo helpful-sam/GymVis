@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GymVis/static/css/main.47314888.css",
+    "main.js": "/GymVis/static/js/main.de3451d9.js",
+    "index.html": "/GymVis/index.html",
+    "main.47314888.css.map": "/GymVis/static/css/main.47314888.css.map",
+    "main.de3451d9.js.map": "/GymVis/static/js/main.de3451d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47314888.css",
+    "static/js/main.de3451d9.js"
+  ]
+}
