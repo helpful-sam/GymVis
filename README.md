@@ -18,7 +18,7 @@ neccecery.
 The muscle model used has been sourced from [Symmetric Strength](https://symmetricstrength.com/).
 
 The different exercises and info such as muscles worked and how to do them have
-been scraped from [exrx](https://exrx.net/) using a custom made python program.
+been scraped from [ExRx](https://exrx.net/) using a custom made python program.
 
 Note that this app uses a large image to show the muscles on the model,
 as a consequence of this the app will not work well on mobile. Please use this
