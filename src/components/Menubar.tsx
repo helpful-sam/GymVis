@@ -10,6 +10,9 @@ export default function Menubar() {
                 <li className="menuOption">
                     <Link to="/workout">Workout Creator</Link> {' '}
                 </li>
+                <li className="menuOption">
+                    <Link to="/database">database</Link> {' '}
+                </li>
             </ul>
         </div>
     )

@@ -14,6 +14,8 @@ import {
 } from 'react-router-dom';
 import SingleExercise from './pages/SingleExercise';
 import MultExercise from './pages/MultExercise';
+import AppDatabase from './components/database/appDatabase';
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -28,6 +30,7 @@ root.render(
             <Route path='/' element={<SingleExercise />} />
             <Route path='/GymVis' element={<SingleExercise />} />
             <Route path='/workout' element={<MultExercise />} />
+            <Route path="/database" element={<AppDatabase />} />
         </Routes>
     </BrowserRouter>
 
