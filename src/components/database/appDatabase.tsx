@@ -4,6 +4,8 @@ import FocusSelector from '../workout/FocusSelector';
 import ExerciseCleanVisib from '../interfaces/InterfaceExerciseCleanVisib';
 import ModelWorkout from './MuscleModelDatabase';
 import allExercises from '../Exercises'
+import Exercise from '../interfaces/InterfaceExercise';
+import ExerciseClean from '../interfaces/InterfaceExerciseClean';
 
 export default function AppDatabase() {
     // Sets default state & state update function.
@@ -59,7 +61,9 @@ export default function AppDatabase() {
     function handleRadioChange(_event: any, radioValue: string) {
         setRadioValue(radioValue);
         removeAllColorClasses()
-        activeExercises.forEach((ex) => colorMusclesRadio(ex, radioValue))
+
+        console.log("Radio switched")
+        // activeExercises.forEach((ex) => colorMusclesRadio(ex, radioValue))
     }
 
     /**
@@ -153,6 +157,65 @@ export default function AppDatabase() {
                 return "forearms";
             default:
                 return "undefined";
+        }
+    }
+
+
+    /**
+     * Converts muscle class to its muscle name.
+     * @param muscleClass - A muscle name used in the exercise dictionaries.
+     * @returns {string} - The name of the class that represents the muscle name.
+     */
+     function classToMuscle(muscleClass: string): string[] {
+        switch (muscleClass) {
+            case "hip-adductors":
+                return ["Adductor Magnus", "Adductors, Hip", "Gracilis"]
+            case "biceps":
+                return ["Brachialis", "Biceps Brachii, Short Head", "Biceps Brachii"]
+            case "forearms":
+                return ["Brachioradialis", "Wrist Extensors", "Wrist Flexors"]
+            case "front-delts":
+                return ["Deltoid, Anterior"]
+            case "side-delts":
+                return ["Deltoid, Lateral"]
+            case "rear-delts":
+                return ["Deltoid, Posterior"]
+            case "spinal-erectors":
+                return ["Erector Spinae"]
+            case "calves":
+                return ["Gastrocnemius", "Soleus"]
+            case "hip-flexors":
+                return ["Gluteus Medius", "Gluteus Minimus", "Iliopsoas", "Pectineus", "Sartorius", "Tensor Fasciae Latae"]
+            case "glutes":
+                return ["Gluteus Maximus"]
+            case "hamstrings":
+                return ["Hamstrings"]
+            case "rotator-cuff":
+                return ["Infraspinatus", "Supraspinatus"]
+            case "lats-and-teres-major":
+                return ["Latissimus Dorsi", "Teres Major"]
+            case "upper-traps":
+                return ["Levator Scapulae"]
+            case "serratus-and-obliques":
+                return ["Obliques", "Serratus Anterior", "Serratus Anterior, Inferior Digitations"]
+            case "lower-chest":
+                return ["Pectoralis Major, Sternal"]
+            case "upper-chest":
+                return ["Pectoralis Major, Clavicular"]
+            case "quads":
+                return ["Quadriceps"]
+            case "middle-traps":
+                return ["Rhomboids", "Trapezius, Middle"]
+            case "abdominals":
+                return ["Rectus Abdominis"]
+            case "upper-traps":
+                return ["Trapezius, Upper"]
+            case "lower-traps":
+                return ["Trapezius, Lower"]
+            case "triceps":
+                return ["Triceps Brachii", "Triceps, Long Head"]
+            default:
+                return ["undefined"];
         }
     }
 
@@ -265,6 +328,28 @@ export default function AppDatabase() {
         }
     }
 
+
+    function overlappingInArrays(exerciseFocusMuscles: string[] | string, wantedMuscles: string[]) {
+        const contains = wantedMuscles.some((el) => {return exerciseFocusMuscles.includes(el)})
+
+        return contains
+    }
+
+
+    function handleMuscleClick(event: any) {
+        const classes = event.target.classList.value;
+        const muscleClass = classes.replace("muscle", "").trim()
+        const muscles = classToMuscle(muscleClass)
+        const radioVal = radioValue as keyof ExerciseClean
+
+        let actives = allExercises().filter((ex: ExerciseClean) => overlappingInArrays(ex[radioVal], muscles))
+        console.log(actives)
+        // console.log(muscles)
+        setActiveExercise(actives)
+
+        return
+    }
+
     return (
         <>
             <div className="leftDiv">
@@ -275,7 +360,7 @@ export default function AppDatabase() {
             <div className="rightDiv">
                 <React.StrictMode>
                     <FocusSelector radioValue={radioValue} handleRadioChange={handleRadioChange} />
-                    <ModelWorkout />
+                    <ModelWorkout handleMuscleClick={handleMuscleClick} />
                 </React.StrictMode>
             </div>
         </>
