@@ -191,7 +191,7 @@ export default function AppDatabase() {
             case "lats-and-teres-major":
                 return ["Latissimus Dorsi", "Teres Major"]
             case "upper-traps":
-                return ["Levator Scapulae"]
+                return ["Levator Scapulae", "Trapezius, Upper"]
             case "serratus-and-obliques":
                 return ["Obliques", "Serratus Anterior", "Serratus Anterior, Inferior Digitations"]
             case "lower-chest":
@@ -204,8 +204,6 @@ export default function AppDatabase() {
                 return ["Rhomboids", "Trapezius, Middle"]
             case "abdominals":
                 return ["Rectus Abdominis"]
-            case "upper-traps":
-                return ["Trapezius, Upper"]
             case "lower-traps":
                 return ["Trapezius, Lower"]
             case "triceps":
@@ -244,40 +242,6 @@ export default function AppDatabase() {
                 }
             }
 
-        }
-    }
-
-    /**
-     * Adds the clicked exercise to the state of current active exercises.
-     * @param _event
-     * @param {ExerciseCleanVisib | null} exercise - The clicked exercise that is to
-     * be added to the active exercises.
-     */
-    function updateActive(_event: any, exercise: ExerciseCleanVisib | null) {
-        if (exercise == null) {
-            return
-        } else {
-            const inState = activeExercises.some(elem => {
-                return JSON.stringify(exercise) === JSON.stringify(elem)
-            });
-            if (!inState) {
-                const newEx = {
-                    label: exercise["label"],
-                    target: exercise["target"],
-                    synergists: exercise["synergists"],
-                    dynamicStabilizers: exercise["dynamicStabilizers"],
-                    stabilizers: exercise["stabilizers"],
-                    antagonistStabilizer: exercise["antagonistStabilizer"],
-                    prep: exercise["prep"],
-                    exec: exercise["exec"],
-                    mechanics: exercise["mechanics"],
-                    force: exercise["force"],
-                    url: exercise["url"],
-                    visib: true
-                }
-                setActiveExercise([...activeExercises, newEx]);
-                colorStateRadio([...activeExercises, newEx], radioValue);
-            }
         }
     }
 
