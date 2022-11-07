@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import ExerciseCardsHolder from '../workout/ExerciseCardsHolder';
+import ExerciseCardsHolderDatabase from './ExerciseCardHolderDatabase';
 import FocusSelector from '../workout/FocusSelector';
 import ExerciseCleanVisib from '../interfaces/InterfaceExerciseCleanVisib';
 import ModelWorkout from './MuscleModelDatabase';
 import allExercises from '../Exercises'
-import Exercise from '../interfaces/InterfaceExercise';
 import ExerciseClean from '../interfaces/InterfaceExerciseClean';
 
 export default function AppDatabase() {
@@ -354,7 +353,7 @@ export default function AppDatabase() {
         <>
             <div className="leftDiv">
                 <React.StrictMode>
-                    <ExerciseCardsHolder actives={activeExercises} onRemove={onRemove} toggleVisibility={toggleVisibility} />
+                    <ExerciseCardsHolderDatabase actives={activeExercises} onRemove={onRemove} toggleVisibility={toggleVisibility} />
                 </React.StrictMode>
             </div>
             <div className="rightDiv">
