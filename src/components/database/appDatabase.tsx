@@ -60,9 +60,7 @@ export default function AppDatabase() {
     function handleRadioChange(_event: any, radioValue: string) {
         setRadioValue(radioValue);
         removeAllColorClasses()
-
-        console.log("Radio switched")
-        // activeExercises.forEach((ex) => colorMusclesRadio(ex, radioValue))
+        setActiveExercise([])
     }
 
     /**
@@ -158,7 +156,6 @@ export default function AppDatabase() {
                 return "undefined";
         }
     }
-
 
     /**
      * Converts muscle class to its muscle name.
@@ -296,7 +293,7 @@ export default function AppDatabase() {
 
     /**
      * Colors the active radio focus of all active exercises.
-     * @param {ExerciseCleanVisib[]} exerciseState - The state with curretn active
+     * @param {ExerciseCleanVisib[]} exerciseState - The state with current active
      * exercises.
      * @param {string} radioValue - The radio state of active focus.
      */
@@ -327,26 +324,48 @@ export default function AppDatabase() {
         }
     }
 
-
-    function overlappingInArrays(exerciseFocusMuscles: string[] | string, wantedMuscles: string[]) {
+    /**
+    * Checks if an item from the wantedMuscles array is present in the
+    * exerciseFocusMuscles array.
+    *
+    * @param {string[]} exerciseFocusMuscles - The array of muscles an exercises
+    * works on, on the specific focus (target, synergist, etc.)
+    * @param {string[]} wantedMuscles - An array of muscles who's exercises are
+    * to be shown
+    * @returns {boolean} - true if there are overlapping muscles, false
+    * otherwise.
+    */
+    function overlappingInArrays(exerciseFocusMuscles: string[] | string, wantedMuscles: string[]): boolean {
         const contains = wantedMuscles.some((el) => {return exerciseFocusMuscles.includes(el)})
 
         return contains
     }
 
-
+    /**
+     * Handles clicking of muscle in database page. The muscle that gets clicked
+     * will get highlighted and all exercises that have the clicked muscles as
+     * target/ synergist/ stabilizer (depending on the radioValue) will get
+     * shown.
+     *
+     * @param {any} event - Event that automatically gets passed when clicking.
+     */
     function handleMuscleClick(event: any) {
         const classes = event.target.classList.value;
         const muscleClass = classes.replace("muscle", "").trim()
+        removeAllColorClasses()
+        let els = document.getElementsByClassName(muscleClass)
+        for (var i = 0; i < els.length; i++) {
+            els[i].classList.add(radioValue);
+        }
+        // Gets an array of muscle names that will be used to obtain list of
+        // exercises that target the muscles on the focus of the current radio
+        // value.
         const muscles = classToMuscle(muscleClass)
+        // Gets an array of exercises that will be shown.
         const radioVal = radioValue as keyof ExerciseClean
-
         let actives = allExercises().filter((ex: ExerciseClean) => overlappingInArrays(ex[radioVal], muscles))
-        console.log(actives)
-        // console.log(muscles)
+        // Shows the exercises.
         setActiveExercise(actives)
-
-        return
     }
 
     return (

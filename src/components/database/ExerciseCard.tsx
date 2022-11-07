@@ -5,8 +5,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box} from '@mui/material';
-import ExerciseArrIndividual from '../interfaces/InterfaceExerciseArrIndividual';
-import ExerciseCleanVisib from '../interfaces/InterfaceExerciseCleanVisib';
 import ExerciseArrDatabase from '../interfaces/InterfaceExerciseArrDatabase';
 
 export default function ExerciseCard({ actives }: ExerciseArrDatabase) {
