@@ -24,4 +24,6 @@ Note that this app uses a large image to show the muscles on the model,
 as a consequence of this the app will not work well on mobile. Please use this
 app on a laptop or desktop for optimal experience.
 
-![Image of the webapp](/gymvisScreen.png?raw=true)
+## Demo
+https://user-images.githubusercontent.com/88938032/221576718-8c20ac73-9098-4a5e-9e36-8baf3844e4fd.mp4
+
