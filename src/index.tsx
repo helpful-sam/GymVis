@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import React from 'react';
 import './css/index.css';
 import './css/searchbar.css';
 import './css/model.css';

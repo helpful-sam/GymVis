@@ -1,4 +1,5 @@
 import Exercise from "../interfaces/InterfaceExercise";
+import React from 'react';
 
 export default function Active({ exer }: Exercise): JSX.Element {
     /**

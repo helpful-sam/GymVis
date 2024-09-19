@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import allExercises from "../Exercises";
 import Exercise from '../interfaces/InterfaceExerciseArrUpd';
+import React from 'react';
 
 export default function SearchWorkout({ exer, onUpdate }: Exercise) {
     // List of all the exercise objects.

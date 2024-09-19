@@ -1,5 +1,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import ModelImg from '../../maleModel.jpg';
+import React from 'react';
 
 export default function ModelWorkout() {
 

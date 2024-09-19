@@ -1,6 +1,7 @@
 import Tooltip from '@mui/material/Tooltip';
 import Exercise from '../interfaces/InterfaceExercise';
 import ModelImg from '../../maleModel.jpg';
+import React from 'react';
 
 export default function Model({ exer }: Exercise) {
 
